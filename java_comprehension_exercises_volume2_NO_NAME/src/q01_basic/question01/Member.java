@@ -5,5 +5,5 @@ package q01_basic.question01;
  */
 class Member {
 	//TODO ここから実装する
-
+	//aaa
 }
