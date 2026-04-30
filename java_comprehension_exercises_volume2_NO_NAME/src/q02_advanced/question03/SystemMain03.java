@@ -12,19 +12,35 @@ public class SystemMain03 {
 		//TODO ここから実装する
 
 		ConsoleReader c = new ConsoleReader();
-		MemberStorage mStorage = new MemberStorage();
-		LoginService login = new LoginService(mStorage);
 		Member memberlogin = null;
-
-		while (isLogin) {
+		int id = 0;
+		String pass = null;
+		while (!isLogin) {
 			System.out.print("input id>>");
 			try {
-				c.inputNumber();
+				id = c.inputNumber();
 			} catch (NumberFormatException e) {
-				System.out.println("数字を入力してください。");
+				System.out.println("不正な入力です。再度入力してください");
+				continue;
+			}
+			System.out.print("input password>>");
+			try {
+				pass = c.inputString();
+			} catch (IOException e) {
+				System.out.println("不正な入力です。再度入力してください");
 				e.printStackTrace();
+				continue;
+			}
+			if (loginService.doLogin(id, pass) != null) {
+				isLogin = true;
+				memberlogin = loginService.doLogin(id, pass);
+				System.out.println("ログインに成功しました");
+				System.out.println("ログインユーザ情報を表示します。");
+			} else {
+				System.out.println("IDまたはパスワードが違っています。再度入力してください。");
 			}
 		}
+		memberlogin.showMember();
 	}
 
 }
