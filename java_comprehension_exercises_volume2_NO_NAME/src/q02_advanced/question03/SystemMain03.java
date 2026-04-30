@@ -25,7 +25,6 @@ public class SystemMain03 {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 }
