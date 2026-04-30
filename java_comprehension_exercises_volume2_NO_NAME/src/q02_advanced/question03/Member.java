@@ -1,4 +1,4 @@
-package q02_advanced.question01;
+package q02_advanced.question03;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,10 +115,6 @@ class Member {
 		this.age = age;
 		this.rank = rank;
 		this.coupons = new ArrayList<>();
-		Coupon c1 = new Coupon(1, 0.5, "最初の特典");
-		Coupon c2 = new Coupon(2, 0.25, "今月の特典");
-		coupons.add(c1);
-		coupons.add(c2);
 	}
 
 	@Override
@@ -130,6 +126,17 @@ class Member {
 	public void showMember() {
 		System.out.println(toString());
 		System.out.println("*******************");
+	}
+
+	public static Member getInstance(int id, String password, String name, int age, int rank) {
+		Member m = new Member(id, password, name, age, rank);
+		Coupon c1 = Coupon.getInstance(1, 0.5, "最初の特典");
+		Coupon c2 = Coupon.getInstance(2, 0.25, "今月の特典");
+		m.coupons = new ArrayList<>();
+		m.coupons.add(c1);
+		m.coupons.add(c2);
+		return m;
+
 	}
 
 }
